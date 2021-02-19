@@ -1,0 +1,119 @@
+/*@author Olga BAITEMIROVA 52191*/
+
+.page {
+    background-color: black;
+}
+
+#game {
+    opacity: 0;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5em;
+    border-bottom: green solid 2px;
+}
+
+#logo {
+    position: absolute;
+    left: 45%;
+    height: 5em;
+    width: 5em; 
+    background-image: url("images/snake.png");
+    background-size: 100%;
+}
+#title {
+    position: absolute;
+    left: 44%;
+    top: 70%;
+    color: white;
+    font-size: 2em;
+}
+
+#appleImage {
+    position: absolute;
+    height: 1.7em;
+    width: 1.7em;
+    top: 10em;
+    left: 57em;
+    background-image: url("images/redApple.png");
+    background-size: 100%;
+}
+#appleNB {
+    position: absolute;
+    margin-left: 2em;
+    margin-top: 0.3em;
+    color: white;
+    font-size: 1em;
+
+}
+
+#trophy {
+    position: absolute;
+    height: 1.7em;
+    width: 1.7em;
+    top: 12em;
+    left: 57em;
+    background-image: url("images/trophy.png");
+    background-size: 100%;
+}
+#scoreNB {
+    position: absolute;
+    margin-left: 2em;
+    margin-top: 0.3em;
+    color: white;
+    font-size: 1em;
+}
+
+#highTrophy {
+    position: absolute;
+    height: 1.7em;
+    width: 1.7em;
+    top: 15em;
+    left: 57em;
+    background-image: url("images/newScore.png");
+    background-size: 100%;
+}
+#highScore {
+    position: absolute;
+    margin-left: 2em;
+    margin-top: 0.3em;
+    color: yellow;
+    font-size: 1em;
+}
+
+#length {
+    position: absolute;
+    color: white;
+    font-size: 1em;
+    top: 25%;
+    left: 67%;
+}
+
+#score {
+    position: absolute;
+    color: white;
+    font-size: 1em;
+    top: 30%;
+    left: 67%;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    top: 95%;
+    height: 1em;
+    width: 100%;
+}
+#author {
+    color: white;
+}
+#id {
+    color: white;
+}
+#teacher {
+    color: white;
+}

@@ -1,0 +1,44 @@
+/*@author Olga BAITEMIROVA 52191*/
+
+#gameOverWindow {
+    display: absolute;
+    opacity: 0;
+    margin-top: 15em;
+    margin-left: 30em;
+    height: 15em;
+    width: 20em;
+    background-color: black;
+    border: 1px solid white;
+}
+
+#replay {
+    margin-top: 0.5em;
+    margin-left: 8.5em;
+    height: 3em;
+    width: 3em;
+    background-image: url("images/replay.png");
+    background-size: 100%;
+}
+
+#button {
+    height: 3em;
+    width: 3em;
+    opacity: 0;
+}
+
+#textEnd {
+    margin-left: 2em;
+    margin-top: 1.5em;
+    color: white; 
+    font-size: 2em;
+}
+
+#newScore {
+    opacity: 0;
+    margin-top: 2em;
+    margin-left: 8.5em;
+    height: 3em;
+    width: 3em;
+    background-image: url("images/newScore.png");
+    background-size: 100%;
+}

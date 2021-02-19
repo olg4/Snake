@@ -1,0 +1,43 @@
+/*@author Olga BAITEMIROVA 52191*/
+
+/*Loading the page*/
+
+@keyframes loader {
+    0% {background-color: green; width: 0em;}
+    100% {background-color: green; width: 20em;}
+}
+
+#loading {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    height: 30em;
+    width: 50em; 
+}
+
+#snake {
+    position: absolute;
+    margin-top: 0;
+    margin-left: 19em;
+    height: 10em;
+    width: 10em; 
+    background-image: url("images/snake.png");
+    background-size: 100%;
+}
+#loadingBar {
+    position: absolute;
+    margin-top: 10em;
+    margin-left: 14em;
+    height: 1em;
+    width: 20em;
+    border: white solid 1px;
+    background-color: black;
+}
+#stateLoad {
+    width: 0em;
+    height: 1em;
+    animation-duration: 2s;
+    animation-name: loader;
+    background-color: green;
+}
+
