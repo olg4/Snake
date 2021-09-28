@@ -1,1 +1,1 @@
-<img src="/readme-img/snake.png" width="200" style="float: left; margin-right: 20px;"/>
+<img src="/readme-img/snake.png" width="400" style="float: left; margin-right: 20px;"/>
