@@ -1,5 +1,3 @@
-/**@author Olga BAITEMIROVA 52191 */
-
 class Position {
 
     constructor(row, column) {

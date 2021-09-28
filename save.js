@@ -1,5 +1,3 @@
-/**@author Olga BAITEMIROVA 52191 */
-
 let highScore = null;
 
 function getValueStorage() {

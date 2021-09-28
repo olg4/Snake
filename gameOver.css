@@ -1,10 +1,11 @@
-/*@author Olga BAITEMIROVA 52191*/
-
 #gameOverWindow {
-    display: absolute;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     opacity: 0;
-    margin-top: 15em;
-    margin-left: 30em;
     height: 15em;
     width: 20em;
     background-color: black;

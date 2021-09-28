@@ -1,5 +1,3 @@
-/**@author Olga BAITEMIROVA 52191 */
-
 $(document).ready( function() {
     document.getElementById("button").disabled = true;
     setTimeout(displayPage, 2000);

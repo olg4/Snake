@@ -1,5 +1,3 @@
-<!--@author Olga BAITEMIROVA 52191-->
-
 <!--
     On Firefox -> have to update until it works because of a timing issue with jquery
     On Chrome -> the background music doesn't work every time
@@ -32,36 +30,30 @@
                 <div id="stateLoad"></div>
             </div>
         </div>
-        
+
+        <audio autoplay loop>
+            <source src="sounds/themeSong.mp3" type="audio/mpeg" >
+            <source src="sounds/themeSong.wav" type="audio/wav" >
+            <source src="sounds/themeSong.ogg" type="audio/ogg" >
+        </audio>
+
         <main id="game">
-            <header>
-                <div id="logo"></div>
-                <h1 id="title">SNAKE</h1>
-            </header>
-            
-            <audio autoplay loop>
-                <source src="sounds/themeSong.mp3" type="audio/mpeg" >
-                <source src="sounds/themeSong.wav" type="audio/wav" >
-                <source src="sounds/themeSong.ogg" type="audio/ogg" >
-            </audio>
-
-
-            <div class="board">
+            <div id="game-view">
+                <div class="board">
+                </div>
+                <div id="progress">
+                    <div class="progress-item"><div id="apple-image"></div><span id="appleNB"> 0</span></div>
+                    <div class="progress-item"><div id="trophy-image"></div><span id="scoreNB"> 0</span></div>
+                    <div class="progress-item"><div id="high-score-trophy-image"></div><span id="highScore"> </span></div>
+                </div>
             </div>
-
-            <div id="appleImage"><span id="appleNB"> 0</span></div>
-            <div id="trophy"><span id="scoreNB"> 0</span></div>
-            <div id="highTrophy"><span id="highScore"> </span></div>
+          
             <div id="gameOverWindow">
                 <div id="textEnd">GAME OVER !</div>
                 <div id="replay"><button id="button" onclick="replay()"></button></div></button>
                 <div id="newScore"></div>
             </div>
-        
             <footer>
-                <span id="author">Olga Baitemirova</span>
-                <span id="id">52191</span>
-                <span id="teacher">- APA</span>
             </footer>
         </main>
 

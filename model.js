@@ -1,5 +1,3 @@
-/**@author Olga BAITEMIROVA 52191 */
-
 let fruits = [];
 let nbFruits = 0;   // quantity of fruits on the board
 let index;          // index of eaten item
@@ -13,7 +11,6 @@ let growingScore;
 
 function start() {
     loop = setInterval(game, 1000/5);
-    growing = setInterval(biggerSnake, 5000);
 }
 
 function randomSquare() {
@@ -62,7 +59,6 @@ function fruitToTrash() {
     let temp = fruits[fruits.length-1];
     fruits[fruits.length-1] = fruits[fruits.indexOf(index)];
     fruits[index] = temp;
-    let eatenFruit = fruits.pop();
 }
 
 /** Aach part takes the next postion */
@@ -75,7 +71,6 @@ function moveTail() {
 
 
 /** When the head is in the same square than tail*/
- 
 function isGameOver() {
     for (let i = 0; i < snake.tail_.length; i++) {
         if (getTailSquareId(i) == getHeadSquareId()) { 
@@ -84,23 +79,9 @@ function isGameOver() {
     }
 }
 
-/**
- * returns true if the snake can cross the wall and false if it can't
- * it depends on the player's choice
- */
-function crossWalls() {
-    return false;
-}
-
-/** The snakes grows after 5 seconds with a new position and a new part of the tail */
 function growingSnake() {
     snake.tail_.push(new Position(snake.tail_[snake.tail_.length-1].row_, snake.tail_[snake.tail_.length-1].column_));
     swivel.push(snake.direction_);
-}
-
-function biggerSnake() {
-    score+=10;
-    growingSnake();
 }
 
 function game() {

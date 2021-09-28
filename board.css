@@ -1,17 +1,10 @@
-/*@author Olga BAITEMIROVA 52191*/
-
 /*Board 15x15*/
 .board {
-    position: absolute;
     z-index: -1;
     display: grid;
-    left: 30%;
-    top: 20%;
     border: green solid 0.5px;
-    height: 30em;
-    width: 30em;
-    grid-template-columns: repeat(15, 2em);
-    grid-template-rows: repeat(15, 2em);
+    grid-template-columns: repeat(15, 2.5em);
+    grid-template-rows: repeat(15, 2.5em);
     background-image: url("images/background.png");
     background-size: 100%;
     background-repeat: no-repeat;

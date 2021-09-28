@@ -1,5 +1,3 @@
-/**@author Olga BAITEMIROVA 52191 */
-
 /**Creates div for each square with id --> square(row,column) */
 function displayBoard(){
     for (let i=1; i<=15; i++) {
@@ -19,107 +17,91 @@ function displaySnake() {
     switch(snake.direction_) {
         case "W":
             document.getElementById(getHeadSquareId()).style.backgroundImage = "url('images/headW.png')";
-            document.getElementById(getHeadSquareId()).style.backgroundSize = "100%";
             break;
         case "N":
             document.getElementById(getHeadSquareId()).style.backgroundImage = "url('images/headN.png')";
-            document.getElementById(getHeadSquareId()).style.backgroundSize = "100%";
             break;
         case "E":
             document.getElementById(getHeadSquareId()).style.backgroundImage = "url('images/headE.png')";
-            document.getElementById(getHeadSquareId()).style.backgroundSize = "100%";
             break;
         case "S":
             document.getElementById(getHeadSquareId()).style.backgroundImage = "url('images/headS.png')";
-            document.getElementById(getHeadSquareId()).style.backgroundSize = "100%";
             break;
     }
+    document.getElementById(getHeadSquareId()).style.backgroundSize = "100%";
 }
 
 /** The previous head's square id is replaced by the tail */
 function displayTail() {
     if (snake.tail_.length > 1) {
-        /**tail */
-        if (snake.tail_[0].row_ == snake.tail_[1].row_ && snake.tail_[0].column_ < snake.tail_[1].column_) {
-            document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailE.png')";
-            document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
-        }
-        else if (snake.tail_[0].row_ == snake.tail_[1].row_ && snake.tail_[0].column_ > snake.tail_[1].column_) {
-            document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailW.png')";
-            document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
-        }
-        else if (snake.tail_[0].column_ == snake.tail_[1].column && snake.tail_[0].row_ < snake.tail_[1].row_) {
-            document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailS.png')";
-            document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
-        }
-        else if (snake.tail_[0].column_ == snake.tail_[1].column && snake.tail_[0].row_ > snake.tail_[1].row_) {
-            document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailN.png')";
-            document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
-        }
-
-        /**main tail (body)*/
-        for (let i = 1; i < snake.tail_.length-1; i++) {
-            if (snake.tail_[i-1].row_ == snake.tail_[i+1].row_ && (snake.tail_[i-1].column_ < snake.tail_[i+1].column_ ||
-                snake.tail_[i-1].column_ > snake.tail_[i+1].column_)) {
-                    document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/bodyWE.png')";
-                    document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
-            }
-            else if (snake.tail_[i-1].column_ == snake.tail_[i+1].column_ && (snake.tail_[i-1].row_ < snake.tail_[i+1].row_ ||
-                     snake.tail_[i-1].row_ > snake.tail_[i+1].row_)) {
-                        document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/bodyNS.png')";
-                        document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
-            }
-            else {
-                addPivot(i);
-            }
-
-        }
-        /**('neck')*/
-        if (swivel[swivel.length-2] == snake.direction_) {
-            switch (snake.direction_) {
-                case "W":
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/bodyWE.png')";
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-                    break;
-                case "N":
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/bodyNS.png')";
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-                    break;
-                case "E":
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/bodyWE.png')";
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-                    break;
-                case "S":
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/bodyNS.png')";
-                    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-                    break;
-            }
-
-        }
-        else {
-            addNeckPivot();
-        }
+        tailPart();
+        bodyPart();
+        neckPart();
     }
     else{
         switch (snake.direction_) {
             case "W":
                 document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailW.png')";
-                document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
                 break;
             case "N":
                 document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailN.png')";
-                document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
                 break;
             case "E":
                 document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailE.png')";
-                document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
                 break;
             case "S":
                 document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailS.png')";
-                document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
                 break;
         }
+        document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
     }
+}
+
+function tailPart() {
+    if (snake.tail_[0].row_ == snake.tail_[1].row_ && snake.tail_[0].column_ < snake.tail_[1].column_) {
+        document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailE.png')";
+    }
+    else if (snake.tail_[0].row_ == snake.tail_[1].row_ && snake.tail_[0].column_ > snake.tail_[1].column_) {
+        document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailW.png')";
+    }
+    else if (snake.tail_[0].column_ == snake.tail_[1].column && snake.tail_[0].row_ < snake.tail_[1].row_) {
+        document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailS.png')";
+    }
+    else if (snake.tail_[0].column_ == snake.tail_[1].column && snake.tail_[0].row_ > snake.tail_[1].row_) {
+        document.getElementById(getTailSquareId(0)).style.backgroundImage = "url('images/tailN.png')";
+    }
+    document.getElementById(getTailSquareId(0)).style.backgroundSize = "100%";
+}
+
+function bodyPart() {
+    for (let i = 1; i < snake.tail_.length-1; i++) {
+        if (snake.tail_[i-1].row_ == snake.tail_[i+1].row_ && (snake.tail_[i-1].column_ < snake.tail_[i+1].column_ ||
+            snake.tail_[i-1].column_ > snake.tail_[i+1].column_)) {
+                document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/bodyWE.png')";
+        }
+        else if (snake.tail_[i-1].column_ == snake.tail_[i+1].column_ && (snake.tail_[i-1].row_ < snake.tail_[i+1].row_ ||
+                 snake.tail_[i-1].row_ > snake.tail_[i+1].row_)) {
+                    document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/bodyNS.png')";
+        }
+        else {
+            addPivot(i);
+        }
+        document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
+    }
+}
+
+function neckPart() {
+    if (swivel[swivel.length-2] == snake.direction_) {
+        if (snake.direction_ == "W" || snake.direction_ == "E") {
+            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/bodyWE.png')";
+        } else if (snake.direction_ == "N" || snake.direction_ == "S") {
+            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/bodyNS.png')";
+        }
+    }
+    else {
+        addNeckPivot();
+    }
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
 }
 
 function displayFruit() {
@@ -157,57 +139,70 @@ function replaceHead() {
     switch (snake.direction_) {
         case "W":
             document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/headOverW.png')";
-            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
             break;
         case "N":
             document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/headOverN.png')";
-            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
             break;
         case "E":
             document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/headOverE.png')";
-            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
             break;
         case "S":
             document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/headOverS.png')";
-            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
             break;
     }
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundColor = "brown";
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.borderBottomRightRadius = "50px 46px";
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.borderBottomLeftRadius = "30px 50px";
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.borderTopLeftRadius = "70px 40px";
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.borderTopRightRadius = "30px 60px";
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
 }
 
 function addPivot(i) {
-    if ((swivel[i-1] == "W" && swivel[i+1] == "S") || (swivel[i-1] == "N" && swivel[i+1] == "E")) {
+    let pivot1 = (swivel[i-1] == "W" && swivel[i+1] == "S") || (swivel[i-1] == "N" && swivel[i+1] == "E");
+    let pivot2 = (swivel[i-1] == "E" && swivel[i+1] == "N") || (swivel[i-1] == "S" && swivel[i+1] == "W");
+    let pivot3 = (swivel[i-1] == "E" && swivel[i+1] == "S") || (swivel[i-1] == "N" && swivel[i+1] == "W");
+    let pivot4 = (swivel[i-1] == "S" && swivel[i+1] == "E") || (swivel[i-1] == "W" && swivel[i+1] == "N");
+    addImagePivot(i, pivot1, pivot2, pivot3, pivot4);
+}
+function addImagePivot(i, pivot1, pivot2, pivot3, pivot4) {
+    switch(true) {
+        case pivot1: 
             document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot1.png')";
-            document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
+            break;
+        case pivot2:
+            document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot2.png')";
+            break;
+        case pivot3:
+            document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot3.png')";
+            break;
+        case pivot4:
+            document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot4.png')";
     }
-    else if((swivel[i-1] == "E" && swivel[i+1] == "N") || (swivel[i-1] == "S" && swivel[i+1] == "W")) {
-                document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot2.png')";
-                document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
-    }
-    else if ((swivel[i-1] == "E" && swivel[i+1] == "S") || (swivel[i-1] == "N" && swivel[i+1] == "W")) {
-                document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot3.png')";
-                document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
-    }
-    else if ((swivel[i-1] == "S" && swivel[i+1] == "E") || (swivel[i-1] == "W" && swivel[i+1] == "N")) { 
-        document.getElementById(getTailSquareId(i)).style.backgroundImage = "url('images/pivot4.png')";
-        document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
-    }
+    document.getElementById(getTailSquareId(i)).style.backgroundSize = "100%";
 }
 
 function addNeckPivot() {
-    if ((swivel[snake.tail_.length-2] == "W" && snake.direction_ == "S") || (swivel[snake.tail_.length-2] == "N" && snake.direction_ == "E")) {
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot1.png')";
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
+    let neckPivot1 = (swivel[snake.tail_.length-2] == "W" && snake.direction_ == "S") || (swivel[snake.tail_.length-2] == "N" && snake.direction_ == "E");
+    let neckPivot2 = (swivel[snake.tail_.length-2] == "E" && snake.direction_ == "N") || (swivel[snake.tail_.length-2] == "S" && snake.direction_ == "W");
+    let neckPivot3 = (swivel[snake.tail_.length-2] == "E" && snake.direction_ == "S") || (swivel[snake.tail_.length-2] == "N" && snake.direction_ == "W");
+    let neckPivot4 = (swivel[snake.tail_.length-2] == "S" && snake.direction_ == "E") || (swivel[snake.tail_.length-2] == "W" && snake.direction_ == "N");
+    addImageNeckPivot(neckPivot1, neckPivot2, neckPivot3, neckPivot4);
+}
+
+function addImageNeckPivot(neckPivot1, neckPivot2, neckPivot3, neckPivot4) {
+    switch(true) {
+        case neckPivot1: 
+            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot1.png')";
+            break;
+        case neckPivot2:
+            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot2.png')";
+            break;
+        case neckPivot3:
+            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot3.png')";
+            break;
+        case neckPivot4:
+            document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot4.png')";
     }
-    else if ((swivel[snake.tail_.length-2] == "E" && snake.direction_ == "N") || (swivel[snake.tail_.length-2] == "S" && snake.direction_ == "W")) {
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot2.png')";
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-    }
-    else if ((swivel[snake.tail_.length-2] == "E" && snake.direction_ == "S") || (swivel[snake.tail_.length-2] == "N" && snake.direction_ == "W")) {
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot3.png')";
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-    }
-    else if ((swivel[snake.tail_.length-2] == "S" && snake.direction_ == "E") || (swivel[snake.tail_.length-2] == "W" && snake.direction_ == "N")) {
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundImage = "url('images/pivot4.png')";
-        document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
-    }
+    document.getElementById(getTailSquareId(snake.tail_.length-1)).style.backgroundSize = "100%";
 }

@@ -1,5 +1,3 @@
-/**@author Olga BAITEMIROVA 52191 */
-
 /*Definition of the snake with its head and its direction*/
 class Snake{
     
@@ -44,58 +42,29 @@ class Snake{
         swivel[swivel.length-1] = this.direction;
         switch(this.direction) {
             case "W":
-                if (!crossWalls() && this.head.column_ == 1) {
-                    over = true;
-                }
-                else if (this.head.column_ == 1) {
-                   nextColumn = this.head.column_ + 14;
-                   this.head = new Position(this.head.row_, nextColumn);
-                }
-                else {
+                if (this.head.column_ != 1) {
                     nextColumn = this.head.column_ - 1;
                     this.head = new Position(this.head.row_, nextColumn);
                 }
                 break;
             case "N":
-                if (!crossWalls() && this.head.row_ == 1) {
-                    over = true;
-                }
-                else if (this.head.row_ == 1) {
-                    nextRow = this.head.row_ + 14;
-                    this.head = new Position(nextRow, this.head.column_);
-                }
-                else {
+                if (this.head.row_ != 1) {
                     nextRow = this.head.row_ - 1;
                     this.head = new Position(nextRow, this.head.column_);
                 }
                 break;
             case "E":
-                if (!crossWalls() && this.head.column_ == 15) {
-                    over = true;
-                }
-                else if (this.head.column_ == 15) {
-                    nextColumn = this.head.column_ - 14;
-                    this.head = new Position(this.head.row_, nextColumn);
-                }
-                else {
+                if (this.head.column_ != 15) {
                     nextColumn = this.head.column_ + 1;
                     this.head = new Position(this.head.row_, nextColumn);
                 }
                 break;
             case "S":
-                if (!crossWalls() && this.head.row_ == 15) {
-                    over = true;
-                }
-                else if (this.head.row_ == 15) {
-                    nextRow = this.head.row_ - 14;
-                    this.head = new Position(nextRow, this.head.column_);
-                }
-                else {
+                if (this.head.row_ != 15) {
                     nextRow = this.head.row_ + 1;
                     this.head = new Position(nextRow, this.head.column_);
                 }
                 break;   
         }
     }
-  
 }
