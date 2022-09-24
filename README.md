@@ -12,3 +12,5 @@ This one is wobbly but it works fine.
 #
 
 retro game 
+
+<img src="readme-img/Logo-esi.png" width="30" align="left"/>
