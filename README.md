@@ -2,7 +2,7 @@
 
 #
 
-One of my first javascript projects.
+One of my first javascript (and programming in general) projects.
 This one is wobbly but it works fine.
 
 #
